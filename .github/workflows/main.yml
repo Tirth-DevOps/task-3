@@ -15,6 +15,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: '11'
+          distribution: 'temurin'
 
       - name: Cache SonarQube dependencies
         uses: actions/cache@v3
@@ -40,6 +41,9 @@ jobs:
 
       - name: Generate deployment package
         run: zip -r deploy.zip . -x '*.git*' -x '*node_modules/*'
+
+      - name: List directory contents
+        run: ls -al
 
       # - name: move zip file to root directory
       #   run: cd backend/ && mv deploy.zip ../deploy.zip
