@@ -32,12 +32,13 @@ jobs:
           unzip sonar-scanner-cli-4.7.0.2747-linux.zip
           export PATH=$PATH:$PWD/sonar-scanner-4.7.0.2747-linux/bin
 
-          # Run SonarQube scan
+          # Run SonarQube scan with debug logging
           sonar-scanner \
             -Dsonar.projectKey=Test \
             -Dsonar.sources=. \
             -Dsonar.host.url=http://43.204.211.23:9000/ \
-            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+            -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
+            -X  # Enable debug logging
 
       - name: Generate deployment package
         run: zip -r deploy.zip . -x '*.git*' -x '*node_modules/*'
