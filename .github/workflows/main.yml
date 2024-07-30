@@ -38,7 +38,7 @@ jobs:
             -Dsonar.sources=. \
             -Dsonar.host.url=http://43.204.211.23:9000/ \
             -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
-            -X  # Enable debug logging
+            -X
 
       - name: Generate deployment package
         run: zip -r deploy.zip . -x '*.git*' -x '*node_modules/*'
